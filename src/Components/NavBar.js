@@ -31,7 +31,7 @@ const ImgLogo = styled.img`
 `;
 
 const Login = styled.button`
-  background-color: #299b01;
+  background-color: transparent;
   border: none;
   color: white;
   font-size: 16px;
@@ -39,6 +39,7 @@ const Login = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 `;
 
 const LoginImage = styled.img`
