@@ -51,7 +51,7 @@ export const NavBar = () => (
   <NavBarStyled>
     <Logo>
       <ImgLogo src={LogoImage} alt="Logo" />
-      <H1>MrDonald's</H1>
+      <H1>MrDonald&aposs</H1>
     </Logo>
     <Login>
       <LoginImage src={UserImage} alt="Icon:User" />
