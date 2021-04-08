@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import {ButtonAdd} from "./ButtonAdd";
 
 const Overlay = styled.div`
 position: fixed;
@@ -28,15 +28,19 @@ width: 100%;
 background-image: url(${({img}) => img});
 background-size: cover;
 background-position: center;
-margin-bottom: 20px
 `;
 
+const ModalWrapper = styled.div `
+display: flex;
+flex-direction: column;
+justify-content:space-between;
+height: calc(100% - 210px);
+padding: 20px 53px 20px 37px;
+`;
 const ModalBlock = styled.div`
-padding: 0 53px 43px 37px;
 display: flex;
 justify-content: space-between;
 align-items: center;
-flex-wrap: wrap;
 `;
 const ModalText = styled.p`
 font-family: Pacifico;
@@ -44,21 +48,6 @@ font-style: normal;
 font-weight: normal;
 font-size: 30px;
 line-height: 53px;
-`;
-const ModalButton = styled.button`
-background: #299B01;
-color: white;
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 21px;
-line-height: 25px;
-min-width: 250px;
-height:65px;
-border: none;
-margin: 200px auto 0 auto;
-
-
 `;
 
 
@@ -75,12 +64,13 @@ export const ModalItem = ({openItem, setOpenItem}) => {
   <Overlay id="overlay" onClick={closeModal}>
   <Modal>
     <Banner img={openItem.img}/>
+    <ModalWrapper>
     <ModalBlock>
      <ModalText>{openItem.name}</ModalText>
      <ModalText>{openItem.price.toLocaleString('ru-RU',{style:'currency', currency:'RUB'})}</ModalText>
-     <ModalButton>Добавить</ModalButton>
     </ModalBlock>
-    
+    <ButtonAdd>Добавить</ButtonAdd>
+   </ModalWrapper>
   </Modal>
 </Overlay>)
   
