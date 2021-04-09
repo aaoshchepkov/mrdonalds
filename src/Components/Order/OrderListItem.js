@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import trachImage from "../image/trash.svg";
+import trachImage from "../../image/trash.svg";
 
 const OrderItemStyled = styled.li`
 display: flex;
@@ -26,11 +26,11 @@ min-widht:80px;
 text-align: right;
 `;
 
-export const OrderListItem = () =>(
+export const OrderListItem = ({order}) =>(
   <OrderItemStyled>
-    <ItemName>JS Burger</ItemName>
+    <ItemName>{order.name}</ItemName>
     <span>2</span>
-    <ItemPrice>2000p</ItemPrice>
+    <ItemPrice>{order.price.toLocaleString('ru-RU',{style:'currency', currency:'RUB'})}</ItemPrice>
     <TrashButton/>
   </OrderItemStyled>
 );

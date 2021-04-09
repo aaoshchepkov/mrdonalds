@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {ButtonAdd} from "./ButtonAdd";
+import {ButtonAdd} from "../Global/ButtonAdd";
 
 const Overlay = styled.div`
 position: fixed;
@@ -51,15 +51,22 @@ line-height: 53px;
 `;
 
 
-export const ModalItem = ({openItem, setOpenItem}) => { 
-  function closeModal(e) {
+export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => { 
+ const closeModal = e => {
     if (e.target.id === 'overlay') {
       setOpenItem(null);
     }
   }
-
-  if (!openItem) return null;
   
+  const order = {
+   ...openItem
+  };
+  const addToOrder = () =>{
+    setOrders([...orders, order]);
+    setOpenItem(null);
+  }
+
+
   return (
   <Overlay id="overlay" onClick={closeModal}>
   <Modal>
@@ -69,7 +76,7 @@ export const ModalItem = ({openItem, setOpenItem}) => {
      <ModalText>{openItem.name}</ModalText>
      <ModalText>{openItem.price.toLocaleString('ru-RU',{style:'currency', currency:'RUB'})}</ModalText>
     </ModalBlock>
-    <ButtonAdd>Добавить</ButtonAdd>
+    <ButtonAdd onClick={addToOrder}>Добавить</ButtonAdd>
    </ModalWrapper>
   </Modal>
 </Overlay>)

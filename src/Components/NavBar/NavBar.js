@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import LogoImage from "../image/logo.svg";
-import UserImage from "../image/user.svg";
+import LogoImage from "../../image/logo.svg";
+import UserImage from "../../image/user.svg";
 
 const NavBarStyled = styled.header`
   position: fixed;
@@ -9,11 +9,11 @@ const NavBarStyled = styled.header`
   left: 0;
   z-index: 999;
   height: 80px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 15px;
   background-color: #299b01;
   color: white;
 `;
@@ -51,7 +51,7 @@ export const NavBar = () => (
   <NavBarStyled>
     <Logo>
       <ImgLogo src={LogoImage} alt="Logo" />
-      <H1>MrDonald&aposs</H1>
+      <H1>MrDonalds</H1>
     </Logo>
     <Login>
       <LoginImage src={UserImage} alt="Icon:User" />
