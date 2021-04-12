@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import {ButtonAdd} from "../Global/ButtonAdd";
+import {ButtonAdd} from "../Styled/ButtonAdd";
 import {OrderListItem} from "./OrderListItem";
+import { totalPriceItems } from '../Functions/secondaryFunction';
+import { formatCurrency } from '../Functions/secondaryFunction';
+
 
 const OrderStyled = styled.section`
 display: flex;
@@ -48,8 +51,10 @@ text-align:center;
 `;
 
 
-export const Order = ({ orders }) => (
-    <OrderStyled>
+export const Order = ({ orders }) => { 
+   const total = orders.reduce((result, order)=> totalPriceItems(order) + result, 0);
+   
+    return (<OrderStyled>
     <OrderTitel>ВАШ ЗАКАЗ</OrderTitel>
     <OrderContent>
       {orders.length ? <OrderList>
@@ -60,8 +65,9 @@ export const Order = ({ orders }) => (
     <OrderTotal>
     <span>Итого</span>
       <span>5</span>
-      <TotalPrice>850Р</TotalPrice></OrderTotal>
+      <TotalPrice>{formatCurrency(total)}</TotalPrice></OrderTotal>
     <ButtonAdd>Оформить</ButtonAdd>
-    </OrderStyled>
-)
+    </OrderStyled>)
+}
+
 
