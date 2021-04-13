@@ -4,6 +4,8 @@ import trachImage from "../../image/trash.svg";
 import { totalPriceItems } from '../Functions/secondaryFunction';
 import { formatCurrency } from '../Functions/secondaryFunction';
 
+
+
 const OrderItemStyled = styled.li`
 display: flex;
 margin: 15px 0;
@@ -21,6 +23,8 @@ background-position: center;
 `;
 const ItemName = styled.span`
 flex-grow: 1;
+display: flex;
+flex-direction: column;
 `;
 const ItemPrice = styled.span`
 margin: 0 10px 0 30px;
@@ -28,11 +32,16 @@ min-widht:80px;
 text-align: right;
 `;
 
-export const OrderListItem = ({order}) =>(
+export function OrderListItem({order}) {
+  return (
+  <>
   <OrderItemStyled>
     <ItemName>{order.name}</ItemName>
-    <span>{order.count}</span>
+    <span>{order.count} </span>
+    
     <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
     <TrashButton/>
   </OrderItemStyled>
-);
+  </>
+) 
+}
