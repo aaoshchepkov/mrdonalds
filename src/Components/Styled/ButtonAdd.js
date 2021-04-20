@@ -17,6 +17,12 @@ transition-duration:.5s;
 &:hover{
   background-color:white;
   color:#299B01
-};
+}
+&: disabled{
+  color:#bbb;
+  background-color:#ccc;
+  border-color: #aaa;
+
+}
 `;
 
