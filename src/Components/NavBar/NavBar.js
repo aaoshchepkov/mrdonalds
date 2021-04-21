@@ -39,23 +39,53 @@ const Login = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 `;
 
 const LoginImage = styled.img`
   width: 32px;
   margin-bottom: 3px;
 `;
+const LogOut = styled.span`
+  font-size: 20px
+  font-weight: 700px;
+  cursor: pointer;
+  margin-right: 20px;
+  align-self: start;
 
-export const NavBar = () => (
+`;
+const User = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
+`;
+const Figure = styled.figure `
+margin: 0;
+`; 
+
+export const NavBar = ({ authentication, login, logOut }) => (
   <NavBarStyled>
     <Logo>
       <ImgLogo src={LogoImage} alt="Logo" />
       <H1>MrDonalds</H1>
     </Logo>
-    <Login>
-      <LoginImage src={UserImage} alt="Icon:User" />
-      войти
-    </Login>
+    {authentication ? (
+      <User>
+        <Figure>
+          <img src={UserImage} alt={authentication.displayName} />
+          <figcaption>{authentication.displayName}</figcaption>
+        </Figure>
+        <LogOut title="Выйти" onClick={logOut}>X</LogOut>
+      </User>
+    ) : (
+      <Login onClick={login}>
+       <Figure>
+          <LoginImage src={UserImage} alt='войти' />
+          <figcaption>Войти</figcaption>
+        </Figure>
+      </Login>
+    )}
   </NavBarStyled>
 );
+
+ 
+        
