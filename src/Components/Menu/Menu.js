@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import dbMenu from "../DBMenu";
 import {ListItem} from "../Menu/ListItem";
 import Banner from "../../image/banner.png";
+import { useFetch } from '../Hooks/useFetch'
+import { Context } from '../Functions/context';
 
 const MenuStyled = styled.main`
 background-color:#ccc;
@@ -21,10 +22,17 @@ width: 100%;
 height: 210px;
 `;
 
-export const Menu = ({setOpenItem}) => (
+export const Menu = () => {
+  const {openItem: {setOpenItem}} = useContext(Context);
+  const res = useFetch();
+  const dbMenu = res.respons;
+
+  return (
   <MenuStyled>
   <BannerMenu/>
-  <SectionMenu>
+  { dbMenu ? 
+    <>
+    <SectionMenu>
     <h2>Бургеры</h2>
     <ListItem itemList={dbMenu.burger}
                setOpenItem={setOpenItem}
@@ -35,8 +43,13 @@ export const Menu = ({setOpenItem}) => (
     <ListItem itemList={dbMenu.other}
               setOpenItem={setOpenItem}
     />
-  </SectionMenu>
+  </SectionMenu> 
+  </> : res.error ?
+  <div>Ошибка загрузки</div> :
+   <div>Загрузка</div>
+  }
   
   </MenuStyled>
 
 )
+}
